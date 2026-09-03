@@ -371,6 +371,17 @@
   .card .gh-stats.visible { display: flex; }
   .card .gh-stats .star { color: var(--accent); }
 
+  .status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    margin-right: 5px;
+  }
+  .status-dot.up { background: var(--accent); }
+  .status-dot.down { background: #F87171; }
+
   .card .actions {
     display: flex;
     gap: 10px;
@@ -461,7 +472,7 @@
       </div>
       <div class="gh-stats" data-repo="tfasanya79/resume-developer"></div>
       <div class="actions">
-        <a class="demo" href="https://timfas.com/cv-builder/" target="_blank" rel="noopener">Live demo</a>
+        <a class="demo" href="https://timfas.com/cv-builder/" target="_blank" rel="noopener"><span class="status-dot" data-status-tool="cv-builder"></span>Live demo</a>
         <a class="code" href="https://github.com/tfasanya79/resume-developer" target="_blank" rel="noopener">Code</a>
       </div>
       <a class="case-link" href="/case-studies/cv-builder.html">Read the case study &rarr;</a>
@@ -544,7 +555,7 @@
       '<div class="tags">' + p.tags.map(t => '<span class="tag">' + t + '</span>').join('') + '</div>' +
       '<div class="gh-stats" data-repo="' + p.codeUrl.replace('https://github.com/', '') + '"></div>' +
       '<div class="actions">' +
-      '<a class="demo" href="' + p.demoUrl + '" target="_blank" rel="noopener">Live demo</a>' +
+      '<a class="demo" href="' + p.demoUrl + '" target="_blank" rel="noopener"><span class="status-dot" data-status-tool="' + p.shot + '"></span>Live demo</a>' +
       '<a class="code" href="' + p.codeUrl + '" target="_blank" rel="noopener">Code</a>' +
       '</div>' +
       '<a class="case-link" href="/case-studies/' + p.shot + '.html">Read the case study &rarr;</a>';
@@ -588,6 +599,16 @@
       // GitHub API unreachable or rate limited, fail silently
     }
   });
+
+  // Live uptime status, refreshed every few minutes on the server, polled once per page load.
+  fetch('/status.json').then(r => r.ok ? r.json() : null).then(data => {
+    if (!data || !data.tools) return;
+    document.querySelectorAll('.status-dot[data-status-tool]').forEach(dot => {
+      const tool = dot.getAttribute('data-status-tool');
+      const info = data.tools[tool];
+      if (info) dot.classList.add(info.status === 'up' ? 'up' : 'down');
+    });
+  }).catch(() => {});
 </script>
 
 </body>
