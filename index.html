@@ -17,6 +17,8 @@
     --text-muted: #7C8CA6;
     --accent: #5EEAD4;
     --accent-dim: #1F4A45;
+    --flagship: #C4B5FD;
+    --flagship-dim: #2C2450;
     --radius: 6px;
   }
 
@@ -51,8 +53,31 @@
     max-width: 60ch;
   }
 
+  header .role-line {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--accent);
+    font-size: 13px;
+    margin-top: 14px;
+  }
+
+  header .badges {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  header .badge {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-muted);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
   header .links {
-    margin-top: 16px;
+    margin-top: 18px;
     display: flex;
     gap: 16px;
     font-size: 13px;
@@ -67,6 +92,94 @@
     max-width: 1180px;
     margin: 0 auto;
     padding: clamp(24px, 4vw, 48px);
+  }
+
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin: 0 0 14px;
+  }
+
+  .flagship-section {
+    margin-bottom: 44px;
+  }
+
+  .flagship-card {
+    background: linear-gradient(135deg, var(--flagship-dim), var(--panel));
+    border: 1px solid #453B7A;
+    border-radius: var(--radius);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .flagship-card .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--flagship);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .flagship-card .name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .flagship-card .name span { color: var(--text-muted); font-weight: 400; }
+
+  .flagship-card .desc {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.65;
+    max-width: 70ch;
+  }
+
+  .flagship-card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .flagship-card .tag {
+    font-size: 11px;
+    color: var(--flagship);
+    background: rgba(196, 181, 253, 0.12);
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+
+  .flagship-card .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .flagship-card .actions a {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .flagship-card .actions a.demo {
+    background: rgba(196, 181, 253, 0.14);
+    border: 1px solid var(--flagship);
+    color: var(--flagship);
+  }
+  .flagship-card .actions a.demo:hover { background: var(--flagship); color: #1D1633; }
+  .flagship-card .actions a.code {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .flagship-card .actions a.code:hover { border-color: var(--text-muted); color: var(--text); }
+
+  .tool-group {
+    margin-bottom: 40px;
   }
 
   .grid {
@@ -166,6 +279,13 @@
 <header>
   <div class="wordmark">portfolio<span>.</span></div>
   <div class="tagline">A small collection of single purpose web tools. Each one solves one problem, runs mostly or entirely in your browser, and is free to use.</div>
+  <div class="role-line">Cybersecurity Consultant / Network Technician / Splunk SIEM Specialist, based in Gothenburg, Sweden</div>
+  <div class="badges">
+    <span class="badge">CCNA</span>
+    <span class="badge">CompTIA Security+</span>
+    <span class="badge">Splunk Certified</span>
+    <span class="badge">Certified Scrum Master</span>
+  </div>
   <div class="links">
     <a href="https://github.com/tfasanya79" target="_blank" rel="noopener">GitHub</a>
     <a href="https://www.linkedin.com/in/timfas/" target="_blank" rel="noopener">LinkedIn</a>
@@ -173,7 +293,33 @@
 </header>
 
 <main>
-  <div class="grid" id="grid"></div>
+  <div class="flagship-section">
+    <p class="section-title">Flagship project</p>
+    <div class="flagship-card">
+      <div class="eyebrow">Featured build</div>
+      <div class="name">CV Builder<span>.</span></div>
+      <div class="desc">A local first CV builder and job search assistant with 14 templates, a real time ATS score sidebar, PDF import and export, an application tracker, job matching, and an AI interview coach. Built to be the most complete resume tool for job seekers, not just a single purpose utility.</div>
+      <div class="tags">
+        <span class="tag">career tools</span>
+        <span class="tag">AI assisted</span>
+        <span class="tag">local first</span>
+      </div>
+      <div class="actions">
+        <a class="demo" href="https://cv.187.55.230.139.sslip.io/" target="_blank" rel="noopener">Live demo</a>
+        <a class="code" href="https://github.com/tfasanya79/resume-developer" target="_blank" rel="noopener">Code</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-group">
+    <p class="section-title">Security tools</p>
+    <div class="grid" id="grid-security"></div>
+  </div>
+
+  <div class="tool-group">
+    <p class="section-title">Network tools</p>
+    <div class="grid" id="grid-network"></div>
+  </div>
 </main>
 
 <footer>
@@ -182,16 +328,11 @@
 
 <script>
   // Add future projects here. Each entry renders as a card automatically.
+  // category must be "security" or "network".
   const PROJECTS = [
     {
-      name: 'subnet.',
-      description: 'A clean, visual IPv4 subnet and CIDR calculator. Shows the network and host bit split, a full binary breakdown, and includes a VLSM subnet splitter and shareable links.',
-      tags: ['networking', 'client side only'],
-      demoUrl: 'https://aipal-staging.cloud/subnet-calculator/',
-      codeUrl: 'https://github.com/tfasanya79/subnet-calculator',
-    },
-    {
       name: 'passcheck.',
+      category: 'security',
       description: 'A password strength and known breach checker that runs entirely in the browser. Checks breach status with the Have I Been Pwned API using k-anonymity, so the password never leaves the page in full.',
       tags: ['security', 'privacy', 'client side only'],
       demoUrl: 'https://aipal-staging.cloud/passcheck/',
@@ -199,30 +340,39 @@
     },
     {
       name: 'inspect.',
+      category: 'security',
       description: 'A DNS and security header inspector. Checks SPF, DKIM, and DMARC email authentication records and grades a site\'s security headers from A to F, with plain English explanations for each result.',
       tags: ['security', 'networking'],
       demoUrl: 'https://aipal-staging.cloud/inspect/',
       codeUrl: 'https://github.com/tfasanya79/dns-inspector',
     },
     {
-      name: 'acl-gen.',
-      description: 'A firewall rule and ACL syntax translator. Build a rule once and see Cisco IOS, pfSense, iptables, AWS, and Azure syntax side by side, plus shadowed rule detection and a packet tester.',
-      tags: ['networking', 'client side only'],
-      demoUrl: 'https://aipal-staging.cloud/acl-gen/',
-      codeUrl: 'https://github.com/tfasanya79/acl-gen',
-    },
-    {
       name: 'cert-check.',
+      category: 'security',
       description: 'An SSL/TLS certificate checker. See expiry countdown, chain of trust, protocol version, key strength, and hostname coverage for any domain, explained in plain English.',
       tags: ['security', 'small backend'],
       demoUrl: 'https://aipal-staging.cloud/cert-check/',
       codeUrl: 'https://github.com/tfasanya79/cert-check',
     },
+    {
+      name: 'subnet.',
+      category: 'network',
+      description: 'A clean, visual IPv4 subnet and CIDR calculator. Shows the network and host bit split, a full binary breakdown, and includes a VLSM subnet splitter and shareable links.',
+      tags: ['networking', 'client side only'],
+      demoUrl: 'https://aipal-staging.cloud/subnet-calculator/',
+      codeUrl: 'https://github.com/tfasanya79/subnet-calculator',
+    },
+    {
+      name: 'acl-gen.',
+      category: 'network',
+      description: 'A firewall rule and ACL syntax translator. Build a rule once and see Cisco IOS, pfSense, iptables, AWS, and Azure syntax side by side, plus shadowed rule detection and a packet tester.',
+      tags: ['networking', 'client side only'],
+      demoUrl: 'https://aipal-staging.cloud/acl-gen/',
+      codeUrl: 'https://github.com/tfasanya79/acl-gen',
+    },
   ];
 
-  const grid = document.getElementById('grid');
-
-  PROJECTS.forEach(p => {
+  function renderCard(p) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML =
@@ -233,7 +383,15 @@
       '<a class="demo" href="' + p.demoUrl + '" target="_blank" rel="noopener">Live demo</a>' +
       '<a class="code" href="' + p.codeUrl + '" target="_blank" rel="noopener">Code</a>' +
       '</div>';
-    grid.appendChild(card);
+    return card;
+  }
+
+  const gridSecurity = document.getElementById('grid-security');
+  const gridNetwork = document.getElementById('grid-network');
+
+  PROJECTS.forEach(p => {
+    const target = p.category === 'security' ? gridSecurity : gridNetwork;
+    target.appendChild(renderCard(p));
   });
 </script>
 
