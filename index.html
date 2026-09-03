@@ -83,13 +83,29 @@
     gap: 8px;
   }
   header .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-size: 11px;
     font-family: 'IBM Plex Mono', monospace;
     color: var(--text-muted);
     background: var(--panel);
     border: 1px solid var(--border);
-    padding: 4px 10px;
+    padding: 4px 10px 4px 4px;
     border-radius: 999px;
+    text-decoration: none;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  header .badge:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  header .badge img {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--panel-2);
   }
 
   header .links {
@@ -216,6 +232,17 @@
     flex-wrap: wrap;
     gap: 6px;
   }
+
+  .flagship-card .gh-stats {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--text-muted);
+  }
+  .flagship-card .gh-stats.visible { display: flex; }
+  .flagship-card .gh-stats .star { color: var(--flagship); }
   .flagship-card .tag {
     font-size: 11px;
     color: var(--flagship);
@@ -321,6 +348,18 @@
     border-radius: 999px;
   }
 
+  .card .gh-stats {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--text-muted);
+  }
+  .card .gh-stats.visible { display: flex; }
+  .card .gh-stats .star { color: var(--accent); }
+
   .card .actions {
     display: flex;
     gap: 10px;
@@ -376,10 +415,10 @@
   <div class="tagline">A small collection of single purpose web tools. Each one solves one problem, runs mostly or entirely in your browser, and is free to use.</div>
   <div class="role-line">Cybersecurity Consultant / Network Technician / Splunk SIEM Specialist, based in Gothenburg, Sweden</div>
   <div class="badges">
-    <span class="badge">CCNA</span>
-    <span class="badge">CompTIA Security+</span>
-    <span class="badge">Splunk Certified</span>
-    <span class="badge">Certified Scrum Master</span>
+    <a class="badge" href="https://www.credly.com/users/tim-fas" target="_blank" rel="noopener"><img src="https://images.credly.com/images/683783d8-eaac-4c37-a14d-11bd8a36321d/ccna_600.png" alt="CCNA badge" loading="lazy">CCNA</a>
+    <a class="badge" href="https://www.credly.com/users/tim-fas" target="_blank" rel="noopener"><img src="https://images.credly.com/images/80d8a06a-c384-42bf-ad36-db81bce5adce/blob" alt="CompTIA Security+ badge" loading="lazy">CompTIA Security+</a>
+    <a class="badge" href="https://www.credly.com/users/tim-fas" target="_blank" rel="noopener"><img src="https://images.credly.com/images/6f373b45-7707-4fc7-8cd3-c4ac0f5890d5/20-14376-SPLK-Certification-Badge-Youracclaim.com-101_Splunk-Enterprise-Certified-Admin.png" alt="Splunk Enterprise Certified Admin badge" loading="lazy">Splunk Certified</a>
+    <a class="badge" href="https://www.credly.com/users/tim-fas" target="_blank" rel="noopener"><img src="https://images.credly.com/images/0df7b794-acb5-4cb4-bdce-f17217197a3d/image.png" alt="Scrum Master badge" loading="lazy">Certified Scrum Master</a>
   </div>
   <div class="links">
     <a href="https://github.com/tfasanya79" target="_blank" rel="noopener">GitHub</a>
@@ -409,6 +448,7 @@
         <span class="tag">AI assisted</span>
         <span class="tag">local first</span>
       </div>
+      <div class="gh-stats" data-repo="tfasanya79/resume-developer"></div>
       <div class="actions">
         <a class="demo" href="https://timfas.com/cv-builder/" target="_blank" rel="noopener">Live demo</a>
         <a class="code" href="https://github.com/tfasanya79/resume-developer" target="_blank" rel="noopener">Code</a>
@@ -490,6 +530,7 @@
       '<div class="name">' + p.name.replace(/\.$/, '') + '<span>.</span></div>' +
       '<div class="desc">' + p.description + '</div>' +
       '<div class="tags">' + p.tags.map(t => '<span class="tag">' + t + '</span>').join('') + '</div>' +
+      '<div class="gh-stats" data-repo="' + p.codeUrl.replace('https://github.com/', '') + '"></div>' +
       '<div class="actions">' +
       '<a class="demo" href="' + p.demoUrl + '" target="_blank" rel="noopener">Live demo</a>' +
       '<a class="code" href="' + p.codeUrl + '" target="_blank" rel="noopener">Code</a>' +
@@ -503,6 +544,36 @@
   PROJECTS.forEach(p => {
     const target = p.category === 'security' ? gridSecurity : gridNetwork;
     target.appendChild(renderCard(p));
+  });
+
+  // Live GitHub stats: stars and last commit date, per repo, best effort.
+  function timeAgo(dateStr) {
+    const diffMs = Date.now() - new Date(dateStr).getTime();
+    const days = Math.floor(diffMs / 86400000);
+    if (days < 1) return 'today';
+    if (days === 1) return '1 day ago';
+    if (days < 30) return days + ' days ago';
+    const months = Math.floor(days / 30);
+    if (months < 12) return months + (months === 1 ? ' month ago' : ' months ago');
+    const years = Math.floor(months / 12);
+    return years + (years === 1 ? ' year ago' : ' years ago');
+  }
+
+  document.querySelectorAll('.gh-stats[data-repo]').forEach(async el => {
+    const repo = el.getAttribute('data-repo');
+    try {
+      const res = await fetch('https://api.github.com/repos/' + repo, {
+        headers: { Accept: 'application/vnd.github+json' },
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      el.innerHTML =
+        '<span class="star">&#9733; ' + data.stargazers_count + '</span>' +
+        '<span>updated ' + timeAgo(data.pushed_at) + '</span>';
+      el.classList.add('visible');
+    } catch (err) {
+      // GitHub API unreachable or rate limited, fail silently
+    }
   });
 </script>
 
