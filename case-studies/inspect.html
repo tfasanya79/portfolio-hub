@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>inspect case study : Tim Fasanya</title>
+<meta name="description" content="A DNS and security header inspector with plain English explanations.">
+<link rel="canonical" href="https://timfas.com/case-studies/inspect.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B1220;
+  --panel: #131B2C;
+  --panel-2: #0F1729;
+  --border: #26334A;
+  --text: #E7EDF5;
+  --text-muted: #7C8CA6;
+  --accent: #5EEAD4;
+  --accent-dim: #1F4A45;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 4vw, 48px) 0;
+}
+
+header .back {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+header .back:hover { color: var(--accent); }
+
+header .thumb {
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel-2);
+}
+header .thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+header .name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+header .name span { color: var(--text-muted); font-weight: 400; }
+
+header .tagline {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-top: 8px;
+  max-width: 65ch;
+}
+
+header .stack {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+header .stack .tag {
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+header .actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+header .actions a {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+header .actions a.demo {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+header .actions a.demo:hover { background: var(--accent); color: #06201C; }
+header .actions a.code {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+header .actions a.code:hover { border-color: var(--text-muted); color: var(--text); }
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px);
+}
+
+main section {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+main section:last-child { border-bottom: none; }
+
+.section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 70ch;
+  margin: 0;
+}
+
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 12px 20px 48px;
+}
+footer a { color: var(--text-muted); }
+
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="/">&larr; back to portfolio</a>
+  <div class="thumb"><img src="/assets/screenshots/inspect.jpg" alt="inspect screenshot" width="1280" height="800"></div>
+  <div class="name">inspect<span>.</span></div>
+  <div class="tagline">A DNS and security header inspector with plain English explanations.</div>
+  <div class="stack"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Small backend</span><span class="tag">systemd service</span></div>
+  <div class="actions">
+    <a class="demo" href="https://timfas.com/inspect/" target="_blank" rel="noopener">Live demo</a>
+    <a class="code" href="https://github.com/tfasanya79/dns-inspector" target="_blank" rel="noopener">Code</a>
+  </div>
+</header>
+<main>
+  <section>
+    <p class="section-title">The problem</p>
+    <p class="body">Email spoofing and missing security headers are two of the most common, most overlooked domain misconfigurations. Existing checkers either bury the result in jargon (raw SPF/DKIM/DMARC record dumps) or grade a site without explaining what the grade actually means for a non-specialist.</p>
+  </section>
+  <section>
+    <p class="section-title">The approach</p>
+    <p class="body">A small Express backend performs the DNS lookups for SPF, DKIM, and DMARC, and fetches security headers for the target site, then grades the headers A through F similar to Mozilla Observatory. Each result includes a plain English explanation of what it means and why it matters, added directly in response to the question "does 58 percent mean this site is not secure enough", since a percentage alone does not answer that.</p>
+  </section>
+  <section>
+    <p class="section-title">Lesson learned</p>
+    <p class="body">A backend service that looks fine can still die quietly. The systemd unit here has Restart=on-failure, but the process was stopped by a clean SIGTERM rather than a crash, so it did not auto-restart and sat dead for about 22 hours before a routine check caught it. A grading tool is only useful if it is actually up, this is a reminder to add real uptime monitoring, not just a restart policy.</p>
+  </section>
+</main>
+<footer>
+  Built by Tim, one small tool at a time. <a href="/">Back to portfolio</a>
+</footer>
+</body>
+</html>

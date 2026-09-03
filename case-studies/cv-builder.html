@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Builder case study : Tim Fasanya</title>
+<meta name="description" content="A local first CV builder and job search assistant, the flagship project.">
+<link rel="canonical" href="https://timfas.com/case-studies/cv-builder.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B1220;
+  --panel: #131B2C;
+  --panel-2: #0F1729;
+  --border: #26334A;
+  --text: #E7EDF5;
+  --text-muted: #7C8CA6;
+  --accent: #5EEAD4;
+  --accent-dim: #1F4A45;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 4vw, 48px) 0;
+}
+
+header .back {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+header .back:hover { color: var(--accent); }
+
+header .thumb {
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel-2);
+}
+header .thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+header .name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+header .name span { color: var(--text-muted); font-weight: 400; }
+
+header .tagline {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-top: 8px;
+  max-width: 65ch;
+}
+
+header .stack {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+header .stack .tag {
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+header .actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+header .actions a {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+header .actions a.demo {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+header .actions a.demo:hover { background: var(--accent); color: #06201C; }
+header .actions a.code {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+header .actions a.code:hover { border-color: var(--text-muted); color: var(--text); }
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px);
+}
+
+main section {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+main section:last-child { border-bottom: none; }
+
+.section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 70ch;
+  margin: 0;
+}
+
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 12px 20px 48px;
+}
+footer a { color: var(--text-muted); }
+
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="/">&larr; back to portfolio</a>
+  <div class="thumb"><img src="/assets/screenshots/cv-builder.jpg" alt="CV Builder screenshot" width="1280" height="800"></div>
+  <div class="name">CV Builder<span>.</span></div>
+  <div class="tagline">A local first CV builder and job search assistant, the flagship project.</div>
+  <div class="stack"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">DeepSeek AI</span><span class="tag">PostgreSQL</span></div>
+  <div class="actions">
+    <a class="demo" href="https://timfas.com/cv-builder/" target="_blank" rel="noopener">Live demo</a>
+    <a class="code" href="https://github.com/tfasanya79/resume-developer" target="_blank" rel="noopener">Code</a>
+  </div>
+</header>
+<main>
+  <section>
+    <p class="section-title">The problem</p>
+    <p class="body">Most resume builders are either generic templates with no feedback, or expensive subscriptions gatekeeping basic features like ATS scoring. Job seekers need one tool that covers the whole loop: building the CV, checking it against a real job description, tracking applications, and prepping for the interview.</p>
+  </section>
+  <section>
+    <p class="section-title">The approach</p>
+    <p class="body">Built with Next.js and Supabase for auth and storage, with DeepSeek powering the AI features: a real time ATS score sidebar, tailoring suggestions against a pasted job description, a skill gap analyzer, salary insights, an AI interview coach, and a LinkedIn optimizer, on top of 14 templates and PDF import and export. It later moved to share the timfas.com domain at the /cv-builder/ path alongside the rest of the portfolio.</p>
+  </section>
+  <section>
+    <p class="section-title">Lesson learned</p>
+    <p class="body">Adding a basePath to a Next.js app to share a domain path is not just a config change: every internal client side fetch call to an API route has to be explicitly prefixed with that basePath, or it silently breaks in production while looking fine in development. That single class of bug was found across four separate features during an audit and became the reason a shared withAppBasePath() helper exists in the codebase now, so it cannot be forgotten again.</p>
+  </section>
+</main>
+<footer>
+  Built by Tim, one small tool at a time. <a href="/">Back to portfolio</a>
+</footer>
+</body>
+</html>

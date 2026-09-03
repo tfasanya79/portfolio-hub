@@ -277,6 +277,17 @@
   }
   .flagship-card .actions a.code:hover { border-color: var(--text-muted); color: var(--text); }
 
+  .case-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+  }
+  .case-link:hover { color: var(--accent); }
+  .flagship-card .case-link:hover { color: var(--flagship); }
+
   .tool-group {
     margin-bottom: 40px;
   }
@@ -453,6 +464,7 @@
         <a class="demo" href="https://timfas.com/cv-builder/" target="_blank" rel="noopener">Live demo</a>
         <a class="code" href="https://github.com/tfasanya79/resume-developer" target="_blank" rel="noopener">Code</a>
       </div>
+      <a class="case-link" href="/case-studies/cv-builder.html">Read the case study &rarr;</a>
     </div>
   </div>
 
@@ -534,7 +546,8 @@
       '<div class="actions">' +
       '<a class="demo" href="' + p.demoUrl + '" target="_blank" rel="noopener">Live demo</a>' +
       '<a class="code" href="' + p.codeUrl + '" target="_blank" rel="noopener">Code</a>' +
-      '</div>';
+      '</div>' +
+      '<a class="case-link" href="/case-studies/' + p.shot + '.html">Read the case study &rarr;</a>';
     return card;
   }
 

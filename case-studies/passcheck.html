@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>passcheck case study : Tim Fasanya</title>
+<meta name="description" content="A password strength and known breach checker that never sends your password anywhere in full.">
+<link rel="canonical" href="https://timfas.com/case-studies/passcheck.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B1220;
+  --panel: #131B2C;
+  --panel-2: #0F1729;
+  --border: #26334A;
+  --text: #E7EDF5;
+  --text-muted: #7C8CA6;
+  --accent: #5EEAD4;
+  --accent-dim: #1F4A45;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 4vw, 48px) 0;
+}
+
+header .back {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+header .back:hover { color: var(--accent); }
+
+header .thumb {
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel-2);
+}
+header .thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+header .name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+header .name span { color: var(--text-muted); font-weight: 400; }
+
+header .tagline {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-top: 8px;
+  max-width: 65ch;
+}
+
+header .stack {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+header .stack .tag {
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+header .actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+header .actions a {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+header .actions a.demo {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+header .actions a.demo:hover { background: var(--accent); color: #06201C; }
+header .actions a.code {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+header .actions a.code:hover { border-color: var(--text-muted); color: var(--text); }
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px);
+}
+
+main section {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+main section:last-child { border-bottom: none; }
+
+.section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 70ch;
+  margin: 0;
+}
+
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 12px 20px 48px;
+}
+footer a { color: var(--text-muted); }
+
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="/">&larr; back to portfolio</a>
+  <div class="thumb"><img src="/assets/screenshots/passcheck.jpg" alt="passcheck screenshot" width="1280" height="800"></div>
+  <div class="name">passcheck<span>.</span></div>
+  <div class="tagline">A password strength and known breach checker that never sends your password anywhere in full.</div>
+  <div class="stack"><span class="tag">HTML/CSS/JS</span><span class="tag">Client side only</span><span class="tag">Have I Been Pwned API</span></div>
+  <div class="actions">
+    <a class="demo" href="https://timfas.com/passcheck/" target="_blank" rel="noopener">Live demo</a>
+    <a class="code" href="https://github.com/tfasanya79/passcheck" target="_blank" rel="noopener">Code</a>
+  </div>
+</header>
+<main>
+  <section>
+    <p class="section-title">The problem</p>
+    <p class="body">People reuse weak passwords because strength meters are inconsistent and breach checking tools usually ask you to type your real password into a form you have to trust. That is a bad habit to encourage, even for a legitimate tool.</p>
+  </section>
+  <section>
+    <p class="section-title">The approach</p>
+    <p class="body">Password strength is scored entirely client side, so nothing about the password ever leaves the browser during analysis. Breach checking uses the Have I Been Pwned API with k-anonymity: only the first five characters of the password's SHA-1 hash are sent to the API, and the full match happens locally in the browser against the returned candidate list. The full password is never transmitted.</p>
+  </section>
+  <section>
+    <p class="section-title">Lesson learned</p>
+    <p class="body">Privacy by architecture, not by policy, is the differentiator here. A privacy promise in a README is worth little if the code sends the raw password to a server anyway. Building the k-anonymity flow correctly was the whole point of the project, not an add-on feature.</p>
+  </section>
+</main>
+<footer>
+  Built by Tim, one small tool at a time. <a href="/">Back to portfolio</a>
+</footer>
+</body>
+</html>

@@ -7,5 +7,7 @@ sudo cp ./index.html /var/www/portfolio-hub/
 sudo cp ./robots.txt /var/www/portfolio-hub/ 2>/dev/null || true
 sudo cp ./sitemap.xml /var/www/portfolio-hub/ 2>/dev/null || true
 sudo cp -r ./assets /var/www/portfolio-hub/ 2>/dev/null || true
+sudo mkdir -p /var/www/portfolio-hub/case-studies
+sudo cp ./case-studies/*.html ./case-studies/*.css /var/www/portfolio-hub/case-studies/ 2>/dev/null || true
 sudo chown -R caddy:caddy /var/www/portfolio-hub
 echo "Deployed portfolio-hub $(git rev-parse --short HEAD)"

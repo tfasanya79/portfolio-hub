@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>acl-gen case study : Tim Fasanya</title>
+<meta name="description" content="A firewall rule and ACL syntax translator across five vendor formats.">
+<link rel="canonical" href="https://timfas.com/case-studies/acl-gen.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B1220;
+  --panel: #131B2C;
+  --panel-2: #0F1729;
+  --border: #26334A;
+  --text: #E7EDF5;
+  --text-muted: #7C8CA6;
+  --accent: #5EEAD4;
+  --accent-dim: #1F4A45;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 4vw, 48px) 0;
+}
+
+header .back {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+header .back:hover { color: var(--accent); }
+
+header .thumb {
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel-2);
+}
+header .thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+header .name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+header .name span { color: var(--text-muted); font-weight: 400; }
+
+header .tagline {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-top: 8px;
+  max-width: 65ch;
+}
+
+header .stack {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+header .stack .tag {
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+header .actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+header .actions a {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+header .actions a.demo {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+header .actions a.demo:hover { background: var(--accent); color: #06201C; }
+header .actions a.code {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+header .actions a.code:hover { border-color: var(--text-muted); color: var(--text); }
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px);
+}
+
+main section {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+main section:last-child { border-bottom: none; }
+
+.section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 70ch;
+  margin: 0;
+}
+
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 12px 20px 48px;
+}
+footer a { color: var(--text-muted); }
+
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="/">&larr; back to portfolio</a>
+  <div class="thumb"><img src="/assets/screenshots/acl-gen.jpg" alt="acl-gen screenshot" width="1280" height="800"></div>
+  <div class="name">acl-gen<span>.</span></div>
+  <div class="tagline">A firewall rule and ACL syntax translator across five vendor formats.</div>
+  <div class="stack"><span class="tag">HTML/CSS/JS</span><span class="tag">Client side only</span><span class="tag">No backend</span></div>
+  <div class="actions">
+    <a class="demo" href="https://timfas.com/acl-gen/" target="_blank" rel="noopener">Live demo</a>
+    <a class="code" href="https://github.com/tfasanya79/acl-gen" target="_blank" rel="noopener">Code</a>
+  </div>
+</header>
+<main>
+  <section>
+    <p class="section-title">The problem</p>
+    <p class="body">The same firewall rule has to be re-written by hand in Cisco IOS, pfSense, iptables, and increasingly cloud formats like AWS security groups and Azure NSGs. Translating between them manually is slow and a common source of mistakes during migrations or audits.</p>
+  </section>
+  <section>
+    <p class="section-title">The approach</p>
+    <p class="body">A rule is defined once in a simple form, parsed into a single internal model, and rendered out to all five syntaxes side by side. Shadowed and conflicting rule detection flags rules that can never be reached, and a packet tester lets you simulate a packet against the rule set to see which rule matches and why, all before anything is deployed to real hardware.</p>
+  </section>
+  <section>
+    <p class="section-title">Lesson learned</p>
+    <p class="body">Four features (shadow detection, the packet tester, cloud syntax support, and shareable permalinks/export) were planned and shipped together in one focused pass rather than trickled out. Treating that as one milestone, not four separate small updates, made the tool feel complete rather than perpetually half built.</p>
+  </section>
+</main>
+<footer>
+  Built by Tim, one small tool at a time. <a href="/">Back to portfolio</a>
+</footer>
+</body>
+</html>
