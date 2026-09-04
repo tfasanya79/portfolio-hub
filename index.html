@@ -175,6 +175,21 @@
     margin: 0 0 14px;
   }
 
+  .architecture-note {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--panel);
+  }
+  .arch-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
   .flagship-section {
     margin-bottom: 44px;
   }
@@ -435,7 +450,7 @@
 
 <header>
   <div class="wordmark">portfolio<span>.</span></div>
-  <div class="tagline">A small collection of single purpose web tools. Each one solves one problem, runs mostly or entirely in your browser, and is free to use.</div>
+  <div class="tagline">A working set of security and network tools designed as one connected architecture, not six unrelated demos. Each one covers a real layer of a defense in depth model, deployed and monitored the same way I would design it for a client.</div>
   <div class="role-line">Cybersecurity Consultant / Network Technician / Splunk SIEM Specialist, based in Gothenburg, Sweden</div>
   <div class="badges">
     <a class="badge" href="https://www.credly.com/users/tim-fas" target="_blank" rel="noopener"><img src="https://images.credly.com/images/683783d8-eaac-4c37-a14d-11bd8a36321d/ccna_600.png" alt="CCNA badge" loading="lazy">CCNA</a>
@@ -480,6 +495,11 @@
     </div>
   </div>
 
+  <div class="architecture-note">
+    <p class="section-title">How these fit together</p>
+    <p class="arch-desc">Each tool below maps to a layer of a defense in depth design: perimeter and email trust (inspect, cert-check), access and identity hygiene (passcheck), policy enforcement (acl-gen), and network segmentation (subnet-calculator). Built, deployed, and monitored the same way I would document and hand off a production architecture: with a clear problem statement, the tradeoffs behind each decision, and a lesson learned, all in the case study linked from every card.</p>
+  </div>
+
   <div class="tool-group">
     <p class="section-title">Security tools</p>
     <div class="grid" id="grid-security"></div>
@@ -492,7 +512,7 @@
 </main>
 
 <footer>
-  Built by Tim, one small tool at a time.
+  Built by Tim, one small tool at a time, shipped in phased increments with a public roadmap and change history.
 </footer>
 
 <script>
