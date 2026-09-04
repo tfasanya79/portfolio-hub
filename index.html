@@ -186,9 +186,32 @@
   header .cta a:hover { opacity: 0.88; }
 
   main {
-    max-width: 1180px;
+    max-width: 1320px;
     margin: 0 auto;
     padding: clamp(24px, 4vw, 48px);
+    display: grid;
+    grid-template-columns: minmax(240px, 300px) 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .journey-col {
+    position: sticky;
+    top: 24px;
+  }
+
+  .projects-col {
+    min-width: 0;
+  }
+
+  @media (max-width: 900px) {
+    main {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .journey-col {
+      position: static;
+    }
   }
 
   .section-title {
@@ -548,8 +571,8 @@
 <body>
 
 <header>
-  <div class="wordmark">portfolio<span>.</span></div>
-  <div class="intro">I started out fixing networks and reading logs, and the fastest way I know to prove I understand a problem is to build something that solves it. Everything below is live: I designed it, deployed it, and I keep it running.</div>
+  <div class="wordmark">Tim Fasanya<span>.</span></div>
+  <div class="intro">From fixing PCs in a Nigerian cybercafe to leading IT projects in Abuja, then starting over in Sweden with no local language and no certifications yet. I rebuilt from there into cybersecurity and network infrastructure, and everything below is what I have designed, shipped, and still keep running since.</div>
   <div class="tagline">A working set of security and network tools designed as one connected architecture, not six unrelated demos. Each one covers a real layer of a defense in depth model, deployed and monitored the same way I would design it for a client.</div>
   <div class="role-line">Cybersecurity Consultant / Network Technician / Splunk SIEM Specialist, based in Gothenburg, Sweden</div>
   <div class="badges">
@@ -583,6 +606,7 @@
 </header>
 
 <main>
+<div class="journey-col">
   <section class="journey-section">
     <p class="section-title">Career journey</p>
     <ol class="journey-list">
@@ -636,7 +660,9 @@
       </li>
     </ol>
   </section>
+</div>
 
+<div class="projects-col">
   <div class="flagship-section">
     <p class="section-title">Flagship project</p>
     <div class="flagship-card">
@@ -692,6 +718,7 @@
       </div>
     </div>
   </div>
+</div>
 </main>
 
 <footer>
