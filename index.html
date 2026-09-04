@@ -215,6 +215,79 @@
     margin: 0;
   }
 
+  .journey-section {
+    margin-bottom: 44px;
+  }
+
+  .journey-list {
+    position: relative;
+    margin: 0;
+    padding-left: 28px;
+    border-left: 2px solid var(--border);
+  }
+
+  .journey-item {
+    position: relative;
+    padding-bottom: 26px;
+  }
+  .journey-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .journey-item::before {
+    content: "";
+    position: absolute;
+    left: -34px;
+    top: 4px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .journey-item.journey-pivot::before {
+    background: var(--flagship);
+  }
+
+  .journey-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin: 0 0 4px;
+  }
+  .journey-item.journey-pivot .journey-date {
+    color: var(--flagship);
+  }
+
+  .journey-role {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 2px;
+  }
+
+  .journey-org {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0 0 6px;
+  }
+
+  .journey-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-muted);
+    max-width: 68ch;
+    margin: 0;
+  }
+
+  @media (max-width: 560px) {
+    .journey-list {
+      padding-left: 20px;
+    }
+    .journey-item::before {
+      left: -26px;
+    }
+  }
+
   .flagship-section {
     margin-bottom: 44px;
   }
@@ -509,6 +582,60 @@
 </header>
 
 <main>
+  <section class="journey-section">
+    <p class="section-title">Career journey</p>
+    <ol class="journey-list">
+      <li class="journey-item">
+        <p class="journey-date">2002 - 2005</p>
+        <p class="journey-role">Customer Service Manager / Engineer</p>
+        <p class="journey-org">Starlinks Cyber Cafe, Nigeria</p>
+        <p class="journey-desc">My first real IT job: troubleshooting and fixing broken computers so customers got a smooth service, one machine at a time.</p>
+      </li>
+      <li class="journey-item">
+        <p class="journey-date">2007 - 2010</p>
+        <p class="journey-role">Projects Assistant</p>
+        <p class="journey-org">Federal Capital Development Authority (Satellite Towns Development Agency), Abuja, Nigeria</p>
+        <p class="journey-desc">Moved into public sector project support work, learning how larger infrastructure projects actually get planned and delivered.</p>
+      </li>
+      <li class="journey-item">
+        <p class="journey-date">2010 - 2015</p>
+        <p class="journey-role">IT Project Manager</p>
+        <p class="journey-org">Base Global System Technologies Ltd, Abuja, Nigeria</p>
+        <p class="journey-desc">Nearly six years leading IT projects end to end, from stakeholder management to delivery, before relocating to Sweden.</p>
+      </li>
+      <li class="journey-item journey-pivot">
+        <p class="journey-date">2015 - 2019</p>
+        <p class="journey-role">Outside IT, rebuilding from zero</p>
+        <p class="journey-org">Conference Assistant (Quality Hotel) and Team Lead, General Services (Simplex Bemanning), Sweden</p>
+        <p class="journey-desc">Moving to Sweden reset the clock: no Swedish language and no official IT certifications meant no way back into IT yet. I took hotel and general services work to pay the bills while learning the language and studying on my own time.</p>
+      </li>
+      <li class="journey-item">
+        <p class="journey-date">2019 - 2021</p>
+        <p class="journey-role">Network Design and Computer Management</p>
+        <p class="journey-org">Halmstad University, Sweden</p>
+        <p class="journey-desc">Went back to school to earn a Swedish credential and turn years of self-study into something employers here would recognize.</p>
+      </li>
+      <li class="journey-item">
+        <p class="journey-date">Jun 2021 - Feb 2023</p>
+        <p class="journey-role">IT Security &amp; Data Consultant</p>
+        <p class="journey-org">Orange Cyberdefense, Malmo, Sweden</p>
+        <p class="journey-desc">My first cybersecurity operations role: built a real-time Splunk SIEM, onboarded security data from Azure, Google Cloud and AWS, and worked threat detection day to day.</p>
+      </li>
+      <li class="journey-item">
+        <p class="journey-date">Mar 2023 - Oct 2024</p>
+        <p class="journey-role">Network Technician</p>
+        <p class="journey-org">Tele2 AB, Gothenburg, Sweden</p>
+        <p class="journey-desc">Network troubleshooting and Linux systems administration, with automation work in Python to cut down repetitive manual tasks.</p>
+      </li>
+      <li class="journey-item">
+        <p class="journey-date">Sep 2022 - Present</p>
+        <p class="journey-role">Solutions Consultant &rarr; Solution Architect (InfraSec)</p>
+        <p class="journey-org">Adena Consulting Services Ltd (freelance, concurrent with Tele2)</p>
+        <p class="journey-desc">Freelance security and infrastructure architecture consulting alongside my full-time roles, advising on cybersecurity strategy, risk management and security protocol implementation.</p>
+      </li>
+    </ol>
+  </section>
+
   <div class="flagship-section">
     <p class="section-title">Flagship project</p>
     <div class="flagship-card">
