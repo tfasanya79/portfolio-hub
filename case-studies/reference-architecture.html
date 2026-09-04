@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>reference architecture case study : Tim Fasanya</title>
+<meta name="description" content="How this portfolio itself is deployed: a single Caddy reverse proxy in front of static sites, small Node services, and a Next.js app, with automatic TLS and a cron based uptime checker.">
+<link rel="canonical" href="https://timfas.com/case-studies/reference-architecture.html">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B1220;
+  --panel: #131B2C;
+  --panel-2: #0F1729;
+  --border: #26334A;
+  --text: #E7EDF5;
+  --text-muted: #7C8CA6;
+  --accent: #5EEAD4;
+  --accent-dim: #1F4A45;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 4vw, 48px) 0;
+}
+
+header .back {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+header .back:hover { color: var(--accent); }
+
+header .thumb {
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel-2);
+}
+header .thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+header .name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+header .name span { color: var(--text-muted); font-weight: 400; }
+
+header .tagline {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-top: 8px;
+  max-width: 65ch;
+}
+
+header .stack {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+header .stack .tag {
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+header .actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+header .actions a {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+header .actions a.demo {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+header .actions a.demo:hover { background: var(--accent); color: #06201C; }
+header .actions a.code {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+header .actions a.code:hover { border-color: var(--text-muted); color: var(--text); }
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px);
+}
+
+main section {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+main section:last-child { border-bottom: none; }
+
+.section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+.body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 70ch;
+  margin: 0;
+}
+
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 12px 20px 48px;
+}
+footer a { color: var(--text-muted); }
+
+
+.diagram {
+  margin-top: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel-2);
+  padding: 24px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+}
+.diagram .row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.diagram .arrow {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.diagram .box {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 10px 14px;
+  color: var(--text);
+  text-align: center;
+  flex: 1;
+}
+.diagram .box.accent { border-color: var(--accent); color: var(--accent); }
+.diagram .box .sub { color: var(--text-muted); font-size: 11px; display: block; margin-top: 4px; }
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="/">&larr; back to portfolio</a>
+  <div class="name">reference architecture<span>.</span></div>
+  <div class="tagline">How this portfolio itself is deployed. One Caddy reverse proxy in front of static sites, small Node services, and a Next.js app, with automatic TLS and a cron based uptime checker.</div>
+  <div class="stack">
+    <span class="tag">Caddy</span>
+    <span class="tag">systemd</span>
+    <span class="tag">Let's Encrypt</span>
+    <span class="tag">cron</span>
+    <span class="tag">Infrastructure as documentation</span>
+  </div>
+  <div class="actions">
+    <a class="demo" href="https://timfas.com/" target="_blank" rel="noopener">View the live result</a>
+    <a class="code" href="https://github.com/tfasanya79/portfolio-hub" target="_blank" rel="noopener">Code</a>
+  </div>
+</header>
+<main>
+  <section>
+    <p class="section-title">The problem</p>
+    <p class="body">Six independent tools (three static single page apps, two small Node/Express services, and a Next.js application) needed to share one domain, one TLS certificate, and one deploy process, without turning every new tool into a fresh round of manual server configuration. A portfolio of tools is also, itself, a system that a reviewer for a solution architect role should be able to inspect, not just take on faith.</p>
+  </section>
+  <section>
+    <p class="section-title">The approach</p>
+    <p class="body">A single Caddy instance terminates TLS for timfas.com with automatic Let's Encrypt certificate issuance and renewal, then routes by path: static tools are served directly by Caddy's file server, the two Node services are reached through <code>reverse_proxy</code> to a local port with a matching systemd unit (<code>Restart=on-failure</code>) keeping the process alive, and the Next.js app is reverse proxied on its own port with a matching <code>basePath</code> so it can live at <code>/cv-builder/</code> on the shared domain instead of a separate subdomain. A cron job runs a small bash uptime checker every 5 minutes against all 6 public URLs and writes a public <code>status.json</code>, which the portfolio page itself fetches client side to color a live status dot on every project card.</p>
+    <div class="diagram">
+      <div class="row">
+        <div class="box accent">Browser<span class="sub">visitor</span></div>
+      </div>
+      <div class="arrow">&darr; HTTPS</div>
+      <div class="row">
+        <div class="box accent">Caddy<span class="sub">TLS termination + routing, timfas.com</span></div>
+      </div>
+      <div class="arrow">&darr; path based routing</div>
+      <div class="row">
+        <div class="box">Static file server<span class="sub">subnet-calc, passcheck, acl-gen</span></div>
+        <div class="box">reverse_proxy : 8104 / 8105<span class="sub">inspect, cert-check (systemd)</span></div>
+        <div class="box">reverse_proxy : 3000<span class="sub">CV Builder (Next.js, basePath)</span></div>
+      </div>
+      <div class="arrow">&darr; every 5 minutes</div>
+      <div class="row">
+        <div class="box">cron uptime checker<span class="sub">writes public status.json</span></div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <p class="section-title">Architecture decisions</p>
+    <p class="body">Caddy was chosen over nginx specifically for automatic certificate issuance and renewal with no separate certbot process to babysit, which matters more here than nginx's larger ecosystem since this is a small, single operator deployment. Static tools are served directly by Caddy rather than each getting a Node process, so the only services that actually need to stay alive are the two that genuinely need a backend (DNS lookups and TLS socket inspection are blocked by browser CORS and cannot run client side). The uptime checker was deliberately built as a plain bash script on a 5 minute cron rather than reaching for a hosted monitoring product, trading a slightly less polished dashboard for zero external dependency and full visibility into exactly what it checks and how.</p>
+  </section>
+  <section>
+    <p class="section-title">Lesson learned</p>
+    <p class="body">The dns-inspector outage documented in its own case study, a process killed by a clean SIGTERM that systemd's <code>Restart=on-failure</code> does not catch, was the direct reason the uptime checker and status dots exist at all. A restart policy alone is not monitoring, and this whole reference architecture write up exists because a portfolio of six separate tools is not really six separate projects, it is one small system, and it deserves to be documented and reasoned about as one.</p>
+  </section>
+</main>
+<footer>
+  Built by Tim, one small tool at a time. <a href="/">Back to portfolio</a>
+</footer>
+</body>
+</html>

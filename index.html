@@ -509,6 +509,26 @@
     <p class="section-title">Network tools</p>
     <div class="grid" id="grid-network"></div>
   </div>
+
+  <div class="tool-group">
+    <p class="section-title">Platform</p>
+    <div class="grid">
+      <div class="card" id="card-architecture">
+        <div class="thumb"><img src="/assets/screenshots/reference-architecture.jpg" alt="Reference architecture diagram screenshot" loading="lazy" width="960" height="600"></div>
+        <div class="name">reference architecture<span>.</span></div>
+        <div class="desc">How this portfolio itself is deployed: one Caddy reverse proxy with automatic TLS in front of static sites, small Node services, and a Next.js app, plus a cron based uptime checker feeding the status dots on every card.</div>
+        <div class="tags">
+          <span class="tag">Caddy</span>
+          <span class="tag">systemd</span>
+          <span class="tag">infrastructure</span>
+        </div>
+        <div class="actions">
+          <a class="demo" href="/case-studies/reference-architecture.html" target="_blank" rel="noopener">View architecture</a>
+          <a class="code" href="https://github.com/tfasanya79/portfolio-hub" target="_blank" rel="noopener">Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 
 <footer>
