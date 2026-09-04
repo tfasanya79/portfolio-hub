@@ -173,11 +173,11 @@ footer a { color: var(--text-muted); }
   </section>
   <section>
     <p class="section-title">The approach</p>
-    <p class="body">Built with Next.js and Supabase for auth and storage, with DeepSeek powering the AI features: a real time ATS score sidebar, tailoring suggestions against a pasted job description, a skill gap analyzer, salary insights, an AI interview coach, and a LinkedIn optimizer, on top of 14 templates and PDF import and export. It later moved to share the timfas.com domain at the /cv-builder/ path alongside the rest of the portfolio.</p>
+    <p class="body">Built with Next.js and Supabase for auth and storage, with DeepSeek powering the AI features: a real time ATS score sidebar, tailoring suggestions against a pasted job description, a skill gap analyzer, salary insights, an AI interview coach, and a LinkedIn optimizer, on top of 14 templates and PDF import and export. I later moved it onto timfas.com at /cv-builder/ so it lives alongside my other tools instead of on its own domain.</p>
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>
-    <p class="body">Supabase was chosen over a self managed database specifically to keep auth, storage, and Postgres in one managed service for a solo built product, trading some vendor lock-in for a much smaller operational surface. DeepSeek was chosen for the AI features over a larger frontier model provider mainly on cost per request at the volume a free tier tool needs to sustain, with the interview coach and tailoring prompts written to be portable to another provider if that tradeoff changes later.</p>
+    <p class="body">I chose Supabase over a self managed database to keep auth, storage, and Postgres in one managed service for a solo built product, trading some vendor lock-in for a much smaller operational surface. I picked DeepSeek for the AI features over a larger frontier model provider mainly on cost per request at the volume a free tier tool needs to sustain, and wrote the interview coach and tailoring prompts to be portable to another provider if that tradeoff changes later.</p>
   </section>
   <section>
     <p class="section-title">Lesson learned</p>

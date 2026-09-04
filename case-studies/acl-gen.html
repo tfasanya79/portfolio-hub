@@ -177,7 +177,7 @@ footer a { color: var(--text-muted); }
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>
-    <p class="body">A single internal rule model was designed first, before any vendor renderer was written, specifically so adding a sixth vendor format later only means writing one new renderer against an existing model rather than reworking the whole tool. Shadow and conflict detection runs against that same internal model rather than against each rendered syntax separately, so the logic is written and tested once instead of five times.</p>
+    <p class="body">I designed a single internal rule model first, before writing any vendor renderer, so adding a sixth vendor format later only means writing one new renderer against an existing model instead of reworking the whole tool. Shadow and conflict detection runs against that same internal model rather than against each rendered syntax separately, so I write and test that logic once instead of five times.</p>
   </section>
   <section>
     <p class="section-title">Lesson learned</p>

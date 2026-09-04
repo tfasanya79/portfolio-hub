@@ -177,7 +177,7 @@ footer a { color: var(--text-muted); }
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>
-    <p class="body">The k-anonymity design (send only a 5 character hash prefix, match the rest locally) was chosen over the simpler option of hashing and sending the full SHA-1, because a full hash is still enough for the API operator to correlate requests to a specific password over time. The extra client side matching logic is a deliberate tradeoff of a little more code for a real, not just claimed, privacy guarantee.</p>
+    <p class="body">I chose the k-anonymity design, sending only a 5 character hash prefix and matching the rest locally, over the simpler option of hashing and sending the full SHA-1, because a full hash is still enough for the API operator to correlate requests to a specific password over time. The extra client side matching logic is a deliberate tradeoff: a little more code for a real, not just claimed, privacy guarantee.</p>
   </section>
   <section>
     <p class="section-title">Lesson learned</p>

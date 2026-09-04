@@ -207,7 +207,7 @@ footer a { color: var(--text-muted); }
 <main>
   <section>
     <p class="section-title">The problem</p>
-    <p class="body">Six independent tools (three static single page apps, two small Node/Express services, and a Next.js application) needed to share one domain, one TLS certificate, and one deploy process, without turning every new tool into a fresh round of manual server configuration. A portfolio of tools is also, itself, a system that a reviewer for a solution architect role should be able to inspect, not just take on faith.</p>
+    <p class="body">I had six independent tools (three static single page apps, two small Node/Express services, and a Next.js application) that needed to share one domain, one TLS certificate, and one deploy process, without turning every new tool into a fresh round of manual server setup.</p>
   </section>
   <section>
     <p class="section-title">The approach</p>
@@ -234,11 +234,11 @@ footer a { color: var(--text-muted); }
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>
-    <p class="body">Caddy was chosen over nginx specifically for automatic certificate issuance and renewal with no separate certbot process to babysit, which matters more here than nginx's larger ecosystem since this is a small, single operator deployment. Static tools are served directly by Caddy rather than each getting a Node process, so the only services that actually need to stay alive are the two that genuinely need a backend (DNS lookups and TLS socket inspection are blocked by browser CORS and cannot run client side). The uptime checker was deliberately built as a plain bash script on a 5 minute cron rather than reaching for a hosted monitoring product, trading a slightly less polished dashboard for zero external dependency and full visibility into exactly what it checks and how.</p>
+    <p class="body">I chose Caddy over nginx specifically for automatic certificate issuance and renewal with no separate certbot process to babysit, which matters more here than nginx's larger ecosystem since I run this alone. I serve static tools directly through Caddy rather than giving each one its own Node process, so the only services that actually need to stay alive are the two that genuinely need a backend (DNS lookups and TLS socket inspection are blocked by browser CORS and cannot run client side). I built the uptime checker as a plain bash script on a 5 minute cron instead of reaching for a hosted monitoring product, trading a slightly less polished dashboard for zero external dependency and full visibility into exactly what it checks and how.</p>
   </section>
   <section>
     <p class="section-title">Lesson learned</p>
-    <p class="body">The dns-inspector outage documented in its own case study, a process killed by a clean SIGTERM that systemd's <code>Restart=on-failure</code> does not catch, was the direct reason the uptime checker and status dots exist at all. A restart policy alone is not monitoring, and this whole reference architecture write up exists because a portfolio of six separate tools is not really six separate projects, it is one small system, and it deserves to be documented and reasoned about as one.</p>
+    <p class="body">The dns-inspector outage I write about in its own case study, a process killed by a clean SIGTERM that systemd's <code>Restart=on-failure</code> does not catch, is the direct reason I built the uptime checker and the status dots you see on every card. A restart policy alone is not monitoring. I would rather find out a tool is down from a dot on my own homepage than from someone else telling me.</p>
   </section>
 </main>
 <footer>

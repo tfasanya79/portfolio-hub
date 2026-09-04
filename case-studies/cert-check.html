@@ -177,7 +177,7 @@ footer a { color: var(--text-muted); }
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>
-    <p class="body">A direct TLS socket connection was used to read the live certificate chain rather than relying on a third party certificate transparency log API, so the result always reflects exactly what a real client connecting right now would see, including misconfigurations like an incomplete chain that a log lookup alone would not surface. That is a deliberate accuracy over convenience tradeoff.</p>
+    <p class="body">I used a direct TLS socket connection to read the live certificate chain instead of relying on a third party certificate transparency log API, so the result always reflects exactly what a real client connecting right now would see, including misconfigurations like an incomplete chain that a log lookup alone would not surface. I chose accuracy over convenience here on purpose.</p>
   </section>
   <section>
     <p class="section-title">Lesson learned</p>

@@ -177,7 +177,7 @@ footer a { color: var(--text-muted); }
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>
-    <p class="body">Client side only, no backend, was chosen over a server side calculator because subnetting math has no need to touch a network at all: doing it in the browser removes a whole class of availability and latency concerns for a tool that should feel instant. Permalinks were encoded directly into the URL query string rather than stored server side, trading a slightly longer URL for zero database, zero expiry, and zero privacy exposure of what someone calculated.</p>
+    <p class="body">I chose client side only, no backend, over a server side calculator because subnetting math does not need to touch a network at all. Doing it in the browser removes a whole class of availability and latency concerns for a tool that should feel instant. I encoded permalinks directly into the URL query string instead of storing them server side, trading a slightly longer URL for zero database, zero expiry, and zero privacy exposure of what someone calculated.</p>
   </section>
   <section>
     <p class="section-title">Lesson learned</p>

@@ -177,7 +177,7 @@ footer a { color: var(--text-muted); }
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>
-    <p class="body">A small Express backend was necessary here, unlike the fully client side tools in this portfolio, because DNS lookups (SPF, DKIM, DMARC) and header fetches against an arbitrary third party domain are blocked by browser CORS policy and would leak the visitor doing the lookup. That backend dependency is exactly why it was the one tool that went silently down: it is the tradeoff of needing a server at all, and the fix was adding it to the site wide uptime checker that now polls every 5 minutes and drives the status dot on every project card.</p>
+    <p class="body">I needed a small Express backend here, unlike the fully client side tools in this portfolio, because DNS lookups (SPF, DKIM, DMARC) and header fetches against an arbitrary third party domain are blocked by browser CORS policy and would leak the visitor doing the lookup. That backend dependency is exactly why this was the one tool that went silently down, so I added it to the uptime checker that now polls every 5 minutes and drives the status dot on every project card.</p>
   </section>
   <section>
     <p class="section-title">Lesson learned</p>
