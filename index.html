@@ -107,6 +107,31 @@
     object-fit: cover;
     background: var(--panel-2);
   }
+  header .badge-static {
+    cursor: default;
+  }
+  header .badge-static:hover {
+    border-color: var(--border);
+    color: var(--text-muted);
+  }
+  header .badge-group-label {
+    flex-basis: 100%;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  header .badges:first-of-type .badge-group-label {
+    margin-top: 0;
+  }
+  header .intro {
+    color: var(--text);
+    font-size: 15px;
+    margin-top: 10px;
+    max-width: 62ch;
+    line-height: 1.5;
+  }
 
   header .links {
     margin-top: 18px;
@@ -450,13 +475,23 @@
 
 <header>
   <div class="wordmark">portfolio<span>.</span></div>
+  <div class="intro">I started out fixing networks and reading logs, and the fastest way I know to prove I understand a problem is to build something that solves it. Everything below is live: I designed it, deployed it, and I keep it running.</div>
   <div class="tagline">A working set of security and network tools designed as one connected architecture, not six unrelated demos. Each one covers a real layer of a defense in depth model, deployed and monitored the same way I would design it for a client.</div>
   <div class="role-line">Cybersecurity Consultant / Network Technician / Splunk SIEM Specialist, based in Gothenburg, Sweden</div>
   <div class="badges">
+    <span class="badge-group-label">Credly-verified</span>
     <a class="badge" href="https://www.credly.com/users/tim-fas" target="_blank" rel="noopener"><img src="https://images.credly.com/images/683783d8-eaac-4c37-a14d-11bd8a36321d/ccna_600.png" alt="CCNA badge" loading="lazy">CCNA</a>
     <a class="badge" href="https://www.credly.com/users/tim-fas" target="_blank" rel="noopener"><img src="https://images.credly.com/images/80d8a06a-c384-42bf-ad36-db81bce5adce/blob" alt="CompTIA Security+ badge" loading="lazy">CompTIA Security+</a>
     <a class="badge" href="https://www.credly.com/users/tim-fas" target="_blank" rel="noopener"><img src="https://images.credly.com/images/6f373b45-7707-4fc7-8cd3-c4ac0f5890d5/20-14376-SPLK-Certification-Badge-Youracclaim.com-101_Splunk-Enterprise-Certified-Admin.png" alt="Splunk Enterprise Certified Admin badge" loading="lazy">Splunk Certified</a>
-    <a class="badge" href="https://www.credly.com/users/tim-fas" target="_blank" rel="noopener"><img src="https://images.credly.com/images/0df7b794-acb5-4cb4-bdce-f17217197a3d/image.png" alt="Scrum Master badge" loading="lazy">Certified Scrum Master</a>
+    <a class="badge" href="https://www.credly.com/users/tim-fas" target="_blank" rel="noopener"><img src="https://images.credly.com/images/0df7b794-acb5-4cb4-bdce-f17217197a3d/image.png" alt="IBM IT Scrum Master badge" loading="lazy">IBM IT Scrum Master</a>
+  </div>
+  <div class="badges">
+    <span class="badge-group-label">Other certifications</span>
+    <span class="badge badge-static"><img src="/assets/brand/certs/scrumalliance-csm.png" alt="Scrum Alliance CSM badge" loading="lazy">ScrumAlliance CSM</span>
+    <span class="badge badge-static"><img src="/assets/brand/certs/qualys.png" alt="Qualys badge" loading="lazy">Qualys VMDR</span>
+    <span class="badge badge-static"><img src="/assets/brand/certs/qualys.png" alt="Qualys badge" loading="lazy">Qualys EDR Foundation</span>
+    <span class="badge badge-static"><img src="/assets/brand/certs/qualys.png" alt="Qualys badge" loading="lazy">Qualys Vulnerability Mgmt</span>
+    <span class="badge badge-static"><img src="/assets/brand/certs/qualys.png" alt="Qualys badge" loading="lazy">Qualys Scanning Strategies</span>
   </div>
   <div class="links">
     <a href="https://github.com/tfasanya79" target="_blank" rel="noopener">GitHub</a>
@@ -465,7 +500,7 @@
   </div>
   <div class="stats">
     <div class="stat"><span class="num">6</span><span class="label">Tools shipped</span></div>
-    <div class="stat"><span class="num">4</span><span class="label">Certifications</span></div>
+    <div class="stat"><span class="num">9</span><span class="label">Certifications</span></div>
     <div class="stat"><span class="num">100%</span><span class="label">Open source</span></div>
   </div>
   <div class="cta">
