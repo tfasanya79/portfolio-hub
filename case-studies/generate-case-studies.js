@@ -14,6 +14,8 @@ const CASES = [
     approach: 'Built as a single page app that runs entirely in the browser. Any IP and prefix combination is broken down visually: a network/host bit bar, a full binary breakdown of each octet, and the standard computed values (network address, broadcast, usable host range, wildcard mask). A VLSM splitter was added so a block can be divided into smaller subnets of different sizes in one view, and a permalink feature encodes the current calculation into the URL so a result can be shared or bookmarked directly.',
     lesson: 'IPv6 support was scoped out deliberately. It was tempting to add it early, but VLSM and shareable permalinks were more useful to more people and shipped faster. Keeping the feature set disciplined and finishing fewer things completely, rather than half-finishing more things, made this a stronger portfolio piece.',
     decisions: 'I chose client side only, no backend, over a server side calculator because subnetting math does not need to touch a network at all. Doing it in the browser removes a whole class of availability and latency concerns for a tool that should feel instant. I encoded permalinks directly into the URL query string instead of storing them server side, trading a slightly longer URL for zero database, zero expiry, and zero privacy exposure of what someone calculated.',
+    impact: 'There is a well documented cybersecurity and IT workforce shortage: the 2025 ISC2 Cybersecurity Workforce Study puts the global gap at roughly 4.8 million unfilled roles, with about 750,000 of those in the U.S. alone, and most organizations report that skills gaps directly contribute to security incidents. That gap starts earlier than most people think, subnetting is one of the first concepts that trips up students and junior admins, and most tools built for it assume you already understand it. subnet. was built for the other end of that curve: free, visual, and built to actually explain the network and host math, not just spit out an answer.',
+    source: { label: '2025 ISC2 Cybersecurity Workforce Study', url: 'https://www.isc2.org/Insights/2025/12/2025-ISC2-Cybersecurity-Workforce-Study' },
   },
   {
     slug: 'passcheck',
@@ -27,6 +29,8 @@ const CASES = [
     approach: 'Password strength is scored entirely client side, so nothing about the password ever leaves the browser during analysis. Breach checking uses the Have I Been Pwned API with k-anonymity: only the first five characters of the password\'s SHA-1 hash are sent to the API, and the full match happens locally in the browser against the returned candidate list. The full password is never transmitted.',
     lesson: 'Privacy by architecture, not by policy, is the differentiator here. A privacy promise in a README is worth little if the code sends the raw password to a server anyway. Building the k-anonymity flow correctly was the whole point of the project, not an add-on feature.',
     decisions: 'I chose the k-anonymity design, sending only a 5 character hash prefix and matching the rest locally, over the simpler option of hashing and sending the full SHA-1, because a full hash is still enough for the API operator to correlate requests to a specific password over time. The extra client side matching logic is a deliberate tradeoff: a little more code for a real, not just claimed, privacy guarantee.',
+    impact: 'Compromised credentials are still the leading way attackers get in: Verizon\'s 2025 Data Breach Investigations Report found stolen or reused credentials involved in the majority of breaches it analyzed, and infostealer data shows most people reuse the same password across a large share of their accounts. The usual fix, a password strength meter or breach checker, asks people to type a real password into a form and trust a server with it, a bad habit to build even for a legitimate tool. passcheck. checks strength entirely in the browser and checks breach status using k-anonymity, so the password itself, and even its full hash, never leaves the device, free, for anyone.',
+    source: { label: 'Verizon 2025 Data Breach Investigations Report', url: 'https://www.verizon.com/dbir' },
   },
   {
     slug: 'inspect',
@@ -40,6 +44,8 @@ const CASES = [
     approach: 'A small Express backend performs the DNS lookups for SPF, DKIM, and DMARC, and fetches security headers for the target site, then grades the headers A through F similar to Mozilla Observatory. Each result includes a plain English explanation of what it means and why it matters, added directly in response to the question "does 58 percent mean this site is not secure enough", since a percentage alone does not answer that.',
     lesson: 'A backend service that looks fine can still die quietly. The systemd unit here has Restart=on-failure, but the process was stopped by a clean SIGTERM rather than a crash, so it did not auto-restart and sat dead for about 22 hours before a routine check caught it. A grading tool is only useful if it is actually up, this is a reminder to add real uptime monitoring, not just a restart policy.',
     decisions: 'I needed a small Express backend here, unlike the fully client side tools in this portfolio, because DNS lookups (SPF, DKIM, DMARC) and header fetches against an arbitrary third party domain are blocked by browser CORS policy and would leak the visitor doing the lookup. That backend dependency is exactly why this was the one tool that went silently down, so I added it to the uptime checker that now polls every 5 minutes and drives the status dot on every project card.',
+    impact: 'Email spoofing and impersonation remain one of the costliest, most preventable categories of cybercrime: the FBI\'s Internet Crime Complaint Center attributes billions of dollars in annual U.S. losses to phishing and business email compromise, and independent DMARC adoption surveys consistently find that fewer than half of organizations enforce it strictly enough to actually block spoofed mail. Most of that gap is not malicious, it is that reading an SPF, DKIM, or DMARC record, or a security header report, requires specialist knowledge most domain owners never had a reason to learn. inspect. closes that gap for free: point it at any domain and get a plain English read on whether it can be spoofed and whether its headers protect visitors, no account, no jargon, no paywall.',
+    source: { label: 'FBI Internet Crime Complaint Center, 2025 Internet Crime Report', url: 'https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf' },
   },
   {
     slug: 'cert-check',
@@ -53,6 +59,8 @@ const CASES = [
     approach: 'A small backend connects to the target host over TLS, walks the certificate chain, and reports expiry countdown, chain of trust, negotiated protocol version, key strength, and hostname coverage (SAN matching), all translated into plain English rather than raw certificate fields.',
     lesson: 'The tool was scoped deliberately as a one shot checker, with no ongoing watchlist or email alerting. That kind of persistent monitoring feature is a real product on its own, and trying to build it here would have turned a focused, portfolio ready tool into an unfinished one.',
     decisions: 'I used a direct TLS socket connection to read the live certificate chain instead of relying on a third party certificate transparency log API, so the result always reflects exactly what a real client connecting right now would see, including misconfigurations like an incomplete chain that a log lookup alone would not surface. I chose accuracy over convenience here on purpose.',
+    impact: 'Certificate expiry is one of the most common, most avoidable causes of outages on the internet: DigiCert\'s 2025 Trust Pulse Survey found close to half of organizations experienced certificate related downtime in the past year, with expired certificates the single largest cause, and some individual incidents running into the millions of dollars and hours of remediation. The fix is almost always trivial once someone notices in time, the hard part is that checking chain of trust, protocol version, and key strength normally means being comfortable with openssl on a command line. cert-check. reads the live handshake the same way a browser would and reports back in plain English, so anyone can catch a problem before it becomes an outage.',
+    source: { label: 'DigiCert 2025 Trust Pulse Survey', url: 'https://www.digicert.com/news/digicert-survey-finds-manual-processes-expose-organizations' },
   },
   {
     slug: 'acl-gen',
@@ -66,6 +74,8 @@ const CASES = [
     approach: 'A rule is defined once in a simple form, parsed into a single internal model, and rendered out to all five syntaxes side by side. Shadowed and conflicting rule detection flags rules that can never be reached, and a packet tester lets you simulate a packet against the rule set to see which rule matches and why, all before anything is deployed to real hardware.',
     lesson: 'Four features (shadow detection, the packet tester, cloud syntax support, and shareable permalinks/export) were planned and shipped together in one focused pass rather than trickled out. Treating that as one milestone, not four separate small updates, made the tool feel complete rather than perpetually half built.',
     decisions: 'I designed a single internal rule model first, before writing any vendor renderer, so adding a sixth vendor format later only means writing one new renderer against an existing model instead of reworking the whole tool. Shadow and conflict detection runs against that same internal model rather than against each rendered syntax separately, so I write and test that logic once instead of five times.',
+    impact: 'Misconfiguration, not just novel attacks, causes a large share of real incidents: Verizon\'s 2025 Data Breach Investigations Report attributes more than a quarter of breaches to errors and misconfigurations, concentrated heavily in cloud and network environments where the same rule has to be re-expressed correctly across multiple syntaxes. Firewall and ACL rules are a classic case, the same intent gets hand translated into Cisco IOS, pfSense, iptables, and cloud security groups, and small mistakes during that translation are a routine, avoidable source of exposure. acl-gen. defines a rule once and renders it correctly across five formats, with shadow and conflict detection built in, so the translation step stops being where mistakes get introduced.',
+    source: { label: 'Verizon 2025 Data Breach Investigations Report', url: 'https://www.verizon.com/dbir' },
   },
   {
     slug: 'cv-builder',
@@ -121,6 +131,11 @@ ${css}
     <p class="section-title">The approach</p>
     <p class="body">${c.approach}</p>
   </section>
+  ${c.impact ? `<section>
+    <p class="section-title">Real-world impact</p>
+    <p class="body">${c.impact}</p>
+    ${c.source ? `<p class="source">Source: <a href="${c.source.url}" target="_blank" rel="noopener">${c.source.label}</a></p>` : ''}
+  </section>` : ''}
   <section>
     <p class="section-title">Architecture decisions</p>
     <p class="body">${c.decisions}</p>
