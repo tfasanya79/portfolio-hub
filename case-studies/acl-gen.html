@@ -144,6 +144,14 @@ main section:last-child { border-bottom: none; }
   margin: 0;
 }
 
+.source {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+}
+.source a { color: var(--text-muted); text-decoration: underline; }
+.source a:hover { color: var(--accent); }
+
 footer {
   text-align: center;
   color: var(--text-muted);
@@ -174,6 +182,11 @@ footer a { color: var(--text-muted); }
   <section>
     <p class="section-title">The approach</p>
     <p class="body">A rule is defined once in a simple form, parsed into a single internal model, and rendered out to all five syntaxes side by side. Shadowed and conflicting rule detection flags rules that can never be reached, and a packet tester lets you simulate a packet against the rule set to see which rule matches and why, all before anything is deployed to real hardware.</p>
+  </section>
+  <section>
+    <p class="section-title">Real-world impact</p>
+    <p class="body">Misconfiguration, not just novel attacks, causes a large share of real incidents: Verizon's 2025 Data Breach Investigations Report attributes more than a quarter of breaches to errors and misconfigurations, concentrated heavily in cloud and network environments where the same rule has to be re-expressed correctly across multiple syntaxes. Firewall and ACL rules are a classic case, the same intent gets hand translated into Cisco IOS, pfSense, iptables, and cloud security groups, and small mistakes during that translation are a routine, avoidable source of exposure. acl-gen. defines a rule once and renders it correctly across five formats, with shadow and conflict detection built in, so the translation step stops being where mistakes get introduced.</p>
+    <p class="source">Source: <a href="https://www.verizon.com/dbir" target="_blank" rel="noopener">Verizon 2025 Data Breach Investigations Report</a></p>
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>

@@ -144,6 +144,14 @@ main section:last-child { border-bottom: none; }
   margin: 0;
 }
 
+.source {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+}
+.source a { color: var(--text-muted); text-decoration: underline; }
+.source a:hover { color: var(--accent); }
+
 footer {
   text-align: center;
   color: var(--text-muted);
@@ -174,6 +182,11 @@ footer a { color: var(--text-muted); }
   <section>
     <p class="section-title">The approach</p>
     <p class="body">Built as a single page app that runs entirely in the browser. Any IP and prefix combination is broken down visually: a network/host bit bar, a full binary breakdown of each octet, and the standard computed values (network address, broadcast, usable host range, wildcard mask). A VLSM splitter was added so a block can be divided into smaller subnets of different sizes in one view, and a permalink feature encodes the current calculation into the URL so a result can be shared or bookmarked directly.</p>
+  </section>
+  <section>
+    <p class="section-title">Real-world impact</p>
+    <p class="body">There is a well documented cybersecurity and IT workforce shortage: the 2025 ISC2 Cybersecurity Workforce Study puts the global gap at roughly 4.8 million unfilled roles, with about 750,000 of those in the U.S. alone, and most organizations report that skills gaps directly contribute to security incidents. That gap starts earlier than most people think, subnetting is one of the first concepts that trips up students and junior admins, and most tools built for it assume you already understand it. subnet. was built for the other end of that curve: free, visual, and built to actually explain the network and host math, not just spit out an answer.</p>
+    <p class="source">Source: <a href="https://www.isc2.org/Insights/2025/12/2025-ISC2-Cybersecurity-Workforce-Study" target="_blank" rel="noopener">2025 ISC2 Cybersecurity Workforce Study</a></p>
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>

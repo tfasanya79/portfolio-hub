@@ -144,6 +144,14 @@ main section:last-child { border-bottom: none; }
   margin: 0;
 }
 
+.source {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+}
+.source a { color: var(--text-muted); text-decoration: underline; }
+.source a:hover { color: var(--accent); }
+
 footer {
   text-align: center;
   color: var(--text-muted);
@@ -174,6 +182,11 @@ footer a { color: var(--text-muted); }
   <section>
     <p class="section-title">The approach</p>
     <p class="body">A small backend connects to the target host over TLS, walks the certificate chain, and reports expiry countdown, chain of trust, negotiated protocol version, key strength, and hostname coverage (SAN matching), all translated into plain English rather than raw certificate fields.</p>
+  </section>
+  <section>
+    <p class="section-title">Real-world impact</p>
+    <p class="body">Certificate expiry is one of the most common, most avoidable causes of outages on the internet: DigiCert's 2025 Trust Pulse Survey found close to half of organizations experienced certificate related downtime in the past year, with expired certificates the single largest cause, and some individual incidents running into the millions of dollars and hours of remediation. The fix is almost always trivial once someone notices in time, the hard part is that checking chain of trust, protocol version, and key strength normally means being comfortable with openssl on a command line. cert-check. reads the live handshake the same way a browser would and reports back in plain English, so anyone can catch a problem before it becomes an outage.</p>
+    <p class="source">Source: <a href="https://www.digicert.com/news/digicert-survey-finds-manual-processes-expose-organizations" target="_blank" rel="noopener">DigiCert 2025 Trust Pulse Survey</a></p>
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>

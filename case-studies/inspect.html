@@ -144,6 +144,14 @@ main section:last-child { border-bottom: none; }
   margin: 0;
 }
 
+.source {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+}
+.source a { color: var(--text-muted); text-decoration: underline; }
+.source a:hover { color: var(--accent); }
+
 footer {
   text-align: center;
   color: var(--text-muted);
@@ -174,6 +182,11 @@ footer a { color: var(--text-muted); }
   <section>
     <p class="section-title">The approach</p>
     <p class="body">A small Express backend performs the DNS lookups for SPF, DKIM, and DMARC, and fetches security headers for the target site, then grades the headers A through F similar to Mozilla Observatory. Each result includes a plain English explanation of what it means and why it matters, added directly in response to the question "does 58 percent mean this site is not secure enough", since a percentage alone does not answer that.</p>
+  </section>
+  <section>
+    <p class="section-title">Real-world impact</p>
+    <p class="body">Email spoofing and impersonation remain one of the costliest, most preventable categories of cybercrime: the FBI's Internet Crime Complaint Center attributes billions of dollars in annual U.S. losses to phishing and business email compromise, and independent DMARC adoption surveys consistently find that fewer than half of organizations enforce it strictly enough to actually block spoofed mail. Most of that gap is not malicious, it is that reading an SPF, DKIM, or DMARC record, or a security header report, requires specialist knowledge most domain owners never had a reason to learn. inspect. closes that gap for free: point it at any domain and get a plain English read on whether it can be spoofed and whether its headers protect visitors, no account, no jargon, no paywall.</p>
+    <p class="source">Source: <a href="https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf" target="_blank" rel="noopener">FBI Internet Crime Complaint Center, 2025 Internet Crime Report</a></p>
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>

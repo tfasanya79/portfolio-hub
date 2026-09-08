@@ -144,6 +144,14 @@ main section:last-child { border-bottom: none; }
   margin: 0;
 }
 
+.source {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+}
+.source a { color: var(--text-muted); text-decoration: underline; }
+.source a:hover { color: var(--accent); }
+
 footer {
   text-align: center;
   color: var(--text-muted);
@@ -174,6 +182,11 @@ footer a { color: var(--text-muted); }
   <section>
     <p class="section-title">The approach</p>
     <p class="body">Password strength is scored entirely client side, so nothing about the password ever leaves the browser during analysis. Breach checking uses the Have I Been Pwned API with k-anonymity: only the first five characters of the password's SHA-1 hash are sent to the API, and the full match happens locally in the browser against the returned candidate list. The full password is never transmitted.</p>
+  </section>
+  <section>
+    <p class="section-title">Real-world impact</p>
+    <p class="body">Compromised credentials are still the leading way attackers get in: Verizon's 2025 Data Breach Investigations Report found stolen or reused credentials involved in the majority of breaches it analyzed, and infostealer data shows most people reuse the same password across a large share of their accounts. The usual fix, a password strength meter or breach checker, asks people to type a real password into a form and trust a server with it, a bad habit to build even for a legitimate tool. passcheck. checks strength entirely in the browser and checks breach status using k-anonymity, so the password itself, and even its full hash, never leaves the device, free, for anyone.</p>
+    <p class="source">Source: <a href="https://www.verizon.com/dbir" target="_blank" rel="noopener">Verizon 2025 Data Breach Investigations Report</a></p>
   </section>
   <section>
     <p class="section-title">Architecture decisions</p>
