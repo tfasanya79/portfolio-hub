@@ -148,6 +148,7 @@ ${css}
 <footer>
   Built by Tim, one small tool at a time. <a href="/">Back to portfolio</a>
 </footer>
+<script data-goatcounter="https://timfas.com/analytics/count" async src="https://timfas.com/analytics/count.js"></script>
 </body>
 </html>
 `;
