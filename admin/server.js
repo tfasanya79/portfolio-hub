@@ -588,6 +588,15 @@ const MIME = {
   '.ico': 'image/x-icon',
 };
 
+// Paths served without a session. These are the login page and the assets it
+// needs. They contain no secrets: all real data comes from /api/*, which
+// always requires a session.
+//
+// /app.js and /styles.css MUST be listed here. Gating them behind a session
+// returns a 302 to "/" for the login page's own JS; the browser then refuses to
+// execute it (arrives as text/html) and the sign-in button silently does nothing.
+const PUBLIC_PATHS = new Set(['/', '/index.html', '/app.js', '/styles.css', '/favicon.ico']);
+
 function serveStatic(req, res, url) {
   // Only the login page and its assets are served without a session.
   let rel = url.pathname === '/' ? '/index.html' : url.pathname;
@@ -635,7 +644,7 @@ const server = http.createServer(async (req, res) => {
     const cookies = parseCookies(req);
     const session = getSession(cookies.pa_session);
 
-    if (!session && url.pathname !== '/' && url.pathname !== '/index.html') {
+    if (!session && !PUBLIC_PATHS.has(url.pathname)) {
       res.writeHead(302, { Location: '/' }).end();
       return;
     }
