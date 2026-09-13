@@ -214,7 +214,7 @@
     "demoUrl": "/case-studies/reference-architecture.html",
     "codeUrl": "https://github.com/tfasanya79/portfolio-hub"
   },
-  "footer": "Built by Tim, one small tool at a time, shipped in phased increments with a public roadmap and change history.",
+  "footer": "E2E TEST FOOTER MARKER",
   "manualCaseStudies": [
     "reference-architecture"
   ],

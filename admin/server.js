@@ -129,12 +129,16 @@ const sessions = new Map(); // token -> { user, csrf, expires }
 
 function createSession(user) {
   const token = crypto.randomBytes(32).toString('hex');
-  sessions.set(token, {
+  const session = {
+    // Stored on the object so the login handler can build the Set-Cookie
+    // header from it. Omitting this silently produced `pa_session=undefined`.
+    token,
     user,
     csrf: crypto.randomBytes(32).toString('hex'),
     expires: Date.now() + SESSION_HOURS * 3600 * 1000,
-  });
-  return sessions.get(token);
+  };
+  sessions.set(token, session);
+  return session;
 }
 
 function getSession(token) {
