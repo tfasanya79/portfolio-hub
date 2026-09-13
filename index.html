@@ -571,6 +571,7 @@
 <body>
 
 <header>
+  <!-- BUILD:header:start -->
   <div class="wordmark">Tim Fasanya<span>.</span></div>
   <div class="intro">From fixing PCs in a Nigerian cybercafe to leading IT projects in Abuja, then starting over in Sweden with no local language and no certifications yet. I rebuilt from there into cybersecurity and network infrastructure, and everything below is what I have designed, shipped, and still keep running since.</div>
   <div class="tagline">A working set of security and network tools built around one theme: defending critical infrastructure through SIEM-driven detection, automation, and defense-in-depth network design — deployed and monitored the same way I would build it for a client.</div>
@@ -603,6 +604,7 @@
   <div class="cta">
     <a href="https://www.linkedin.com/in/timfas/" target="_blank" rel="noopener">Message me on LinkedIn</a>
   </div>
+  <!-- BUILD:header:end -->
 </header>
 
 <main>
@@ -610,6 +612,7 @@
   <section class="journey-section">
     <p class="section-title">Career journey</p>
     <ol class="journey-list">
+      <!-- BUILD:journey:start -->
       <li class="journey-item">
         <p class="journey-date">2002 - 2005</p>
         <p class="journey-role">Customer Service Manager / Engineer</p>
@@ -658,6 +661,7 @@
         <p class="journey-org">Adena Consulting Services Ltd (freelance, concurrent with Tele2)</p>
         <p class="journey-desc">Freelance security and infrastructure architecture consulting alongside my full-time roles, advising on cybersecurity strategy, risk management and security protocol implementation.</p>
       </li>
+      <!-- BUILD:journey:end -->
     </ol>
   </section>
 </div>
@@ -665,6 +669,7 @@
 <div class="projects-col">
   <div class="flagship-section">
     <p class="section-title">Flagship project</p>
+    <!-- BUILD:flagship:start -->
     <div class="flagship-card">
       <div class="thumb"><img src="/assets/screenshots/cv-builder.jpg" alt="CV Builder screenshot" loading="lazy" width="960" height="420"></div>
       <div class="eyebrow">Featured build</div>
@@ -682,11 +687,14 @@
       </div>
       <a class="case-link" href="/case-studies/cv-builder.html">Read the case study &rarr;</a>
     </div>
+    <!-- BUILD:flagship:end -->
   </div>
 
   <div class="architecture-note">
     <p class="section-title">How these fit together</p>
+    <!-- BUILD:archnote:start -->
     <p class="arch-desc">Each tool below maps to a layer of a defense in depth design: perimeter and email trust (inspect, cert-check), access and identity hygiene (passcheck), policy enforcement (acl-gen), and network segmentation (subnet-calculator). Built, deployed, and monitored the same way I would document and hand off a production architecture: with a clear problem statement, the tradeoffs behind each decision, and a lesson learned, all in the case study linked from every card.</p>
+    <!-- BUILD:archnote:end -->
   </div>
 
   <div class="tool-group">
@@ -702,6 +710,7 @@
   <div class="tool-group">
     <p class="section-title">Platform</p>
     <div class="grid">
+      <!-- BUILD:platform:start -->
       <div class="card" id="card-architecture">
         <div class="thumb"><img src="/assets/screenshots/reference-architecture.jpg" alt="Reference architecture diagram screenshot" loading="lazy" width="960" height="600"></div>
         <div class="name">reference architecture<span>.</span></div>
@@ -716,18 +725,22 @@
           <a class="code" href="https://github.com/tfasanya79/portfolio-hub" target="_blank" rel="noopener">Code</a>
         </div>
       </div>
+      <!-- BUILD:platform:end -->
     </div>
   </div>
 </div>
 </main>
 
 <footer>
+  <!-- BUILD:footer:start -->
   Built by Tim, one small tool at a time, shipped in phased increments with a public roadmap and change history.
+  <!-- BUILD:footer:end -->
 </footer>
 
 <script>
   // Add future projects here. Each entry renders as a card automatically.
   // category must be "security" or "network".
+  // BUILD:projects:start
   const PROJECTS = [
     {
       name: 'passcheck.',
@@ -775,6 +788,7 @@
       codeUrl: 'https://github.com/tfasanya79/acl-gen',
     },
   ];
+  // BUILD:projects:end
 
   function renderCard(p) {
     const card = document.createElement('div');

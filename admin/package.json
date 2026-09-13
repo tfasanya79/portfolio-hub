@@ -1,0 +1,14 @@
+{
+  "name": "portfolio-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Back office for timfas.com. No dependencies: Node built-ins only.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "hash": "node server.js --hash"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

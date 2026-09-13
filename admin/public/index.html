@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>portfolio admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- ---------------------------------------------------------------- login -->
+<div class="login-wrap" id="loginView">
+  <form class="login-card" id="loginForm" autocomplete="on">
+    <h1>portfolio<span style="color:var(--accent)">.</span> admin</h1>
+    <p class="sub">Sign in to edit timfas.com</p>
+
+    <div class="field">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" autocomplete="username" required autofocus>
+    </div>
+
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required>
+    </div>
+
+    <button type="submit" id="loginBtn" style="width:100%">Sign in</button>
+    <p class="hint" id="loginError" style="color:var(--danger);margin:12px 0 0;min-height:18px"></p>
+  </form>
+</div>
+
+<!-- ------------------------------------------------------------------ app -->
+<div class="app" id="app">
+
+  <div class="topbar">
+    <div class="brand">portfolio<span>.</span> admin</div>
+    <div class="spacer"></div>
+    <div class="save-state" id="saveState">no changes</div>
+    <button class="ghost" id="previewBtn">Preview</button>
+    <button id="publishBtn">Publish</button>
+    <button class="ghost" id="logoutBtn">Sign out</button>
+  </div>
+
+  <div class="body">
+    <nav id="nav"></nav>
+    <main id="main"></main>
+  </div>
+</div>
+
+<!-- -------------------------------------------------------------- preview -->
+<div class="modal" id="previewModal">
+  <div class="modal-inner">
+    <div class="modal-head">
+      <strong>Preview</strong>
+      <span class="meta" id="previewMeta"></span>
+      <div class="tools">
+        <button class="ghost tiny" id="reloadPreview">Reload</button>
+        <button class="ghost tiny" id="closePreview">Close</button>
+      </div>
+    </div>
+    <iframe id="previewFrame" sandbox="allow-same-origin"></iframe>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
