@@ -10,9 +10,9 @@
   },
   "header": {
     "wordmark": "Timothy O, Fasanya",
-    "intro": "Experienced Cybersecurity Consultant and Network Technician with a proven record in real-time technical support, network migration, and security protocol implementation. Skilled in vulnerability management, network troubleshooting, automation tooling, and advanced threat analysis for monitoring and incident response. Strong capability in data assessment and translating technical findings into actionable, business-aligned decisions.\n\nMy journey started in a small cybercafé installing and repairing computers. From there, I progressed to leading IT projects, then rebuilt my career from the ground up after relocating to Sweden with no local language and no certifications. Today, as a solution architect, I bring solid skills in cybersecurity and network infrastructure shaped by resilience, continuous learning, and hands-on experience.",
-    "tagline": "Below are a set of security and network tools built around one theme: defending critical infrastructure through SIEM-driven detection, automation, and defense-in-depth.",
-    "roleLine": "Cybersecurity Consultant / Network Technician / Splunk SIEM Specialist, based in Gothenburg, Sweden",
+    "intro": "Vulnerability management and security operations consultant. I work the full lifecycle: asset discovery, assessment, risk based prioritisation, remediation coordination, verification and management level reporting. Qualys VMDR, Splunk, Azure and Windows estates, with a bias toward turning technical findings into decisions a business can act on.\n\nMy journey started in a small cybercafé installing and repairing computers. From there I progressed to leading IT projects, then rebuilt my career from the ground up after relocating to Sweden with no local language and no certifications. Today I work across vulnerability management, security operations and infrastructure security, shaped by resilience, continuous learning and hands on delivery.",
+    "tagline": "Below are security and network tools I built around one theme: finding exposure, grading it, and explaining it clearly enough that somebody acts on it.",
+    "roleLine": "Vulnerability Management and Security Operations Consultant, based in Sligo, Ireland",
     "badgeGroups": [
       {
         "label": "Credly-verified",
@@ -128,14 +128,14 @@
         "desc": "Nearly six years leading IT projects end to end, from stakeholder management to delivery, before relocating to Sweden."
       },
       {
-        "date": "2015 - 2019",
+        "date": "2015 to 2020",
         "role": "Outside IT, rebuilding from zero",
         "org": "Conference Assistant (Quality Hotel) and Team Lead, General Services (Simplex Bemanning), Sweden",
-        "desc": "Moving to Sweden reset the clock: no Swedish language and no official IT certifications meant no way back into IT yet. I took hotel and general services work to pay the bills while learning the language and studying on my own time.",
+        "desc": "Moving to Sweden reset the clock: no Swedish language and no official IT certifications meant no way back into IT yet. I took hotel and general services work from 2015 to 2018 to pay the bills, then spent the next two years learning the language and studying before starting at Halmstad.",
         "pivot": true
       },
       {
-        "date": "2019 - 2021",
+        "date": "August 2020 - July 2021",
         "role": "Network Design and Computer Management",
         "org": "Halmstad University, Sweden",
         "desc": "Went back to school to earn a Swedish credential and turn years of self-study into something employers here would recognize."
@@ -154,9 +154,9 @@
       },
       {
         "date": "Sep 2022 - Present",
-        "role": "Solutions Consultant &rarr; Solution Architect (InfraSec)",
-        "org": "Adena Consulting Services Ltd (freelance, concurrent with Tele2)",
-        "desc": "Freelance security and infrastructure architecture consulting alongside my full-time roles, advising on cybersecurity strategy, risk management and security protocol implementation."
+        "role": "Cybersecurity Consultant (Partner)",
+        "org": "ADENA Consulting Services Ltd (partner; concurrent with Tele2)",
+        "desc": "Partner and cybersecurity consultant delivering vulnerability management and security engagements alongside my full time roles: Qualys VMDR assessment, risk based prioritisation, remediation coordination and reporting to stakeholders."
       }
     ]
   },
